@@ -14,12 +14,14 @@ echo "Starting parallel execution of Python scripts..."
 echo "========================================="
 
 scripts=(
+  "FIN_IND_AROON_WEEKLY_HISTORICAL_ALPHA_ALL_STOCKS.py"
   "FIN_IND_daily_adjusted_PRODUCTION_INCREMENTAL.py"
   "FIN_IND_intraday_PRODUCTION_INCREMENTAL.py"
   "FIN_IND_income_statement_INCREMENTAL_ALL_STOCKS.py"
   "FIN_IND_news_sentiment_INCREMENTAL.py"
   "FIN_IND_ADX_WEEKLY_INCREMENTAL_FROM_DAILY_ALL_STOCKS.py"
   "FIN_IND_ATR_WEEKLY_INCREMENTAL_FROM_DAILY_ALL_STOCKS_v2.py"
+  "FIN_IND_AROON_WEEKLY_INCREMENTAL_FROM_DAILY_ALL_STOCKS.py"
 )
 
 # Function that keeps rerunning a script until it succeeds
