@@ -43,7 +43,7 @@ API_KEY = need("API_KEY_MAIN")
 STOCK_MASTER_SCHEMA = "FIN_IND"
 STOCK_MASTER_TABLE = "us_stock_master"
 
-TARGET_SCHEMA = "dividend"
+TARGET_SCHEMA = "FIN_IND"
 ANNUAL_TABLE = "income_statements_annual"
 QUARTERLY_TABLE = "income_statements_quarterly"
 
@@ -53,8 +53,8 @@ MAX_STOCK_SYMBOLS = 0
 
 # Current 75 API/min safe settings.
 # For 1200 API/min later, you can use INTERVAL_PER_API = 0.05 after testing.
-BATCH_SIZE = 50
-INTERVAL_PER_API = 1
+BATCH_SIZE = 200
+INTERVAL_PER_API = 0.05
 BATCH_INTERVAL = 1
 
 DB_CONNECT_TIMEOUT_SECONDS = 15
