@@ -10,7 +10,7 @@ set -u  # fail if an unset variable is used
 # export PGPORT="5432"
 # export PGSSLMODE="require"
 
-echo "Starting SEQUENTIAL execution of Python scripts..."
+echo "Starting Testing of incremental execution of Python scripts..."
 echo "========================================="
 
 scripts=(
