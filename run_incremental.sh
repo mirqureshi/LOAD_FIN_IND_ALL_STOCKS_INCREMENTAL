@@ -14,9 +14,9 @@ echo "Starting Testing of incremental execution of Python scripts..."
 echo "========================================="
 
 scripts=(
+ "FIN_IND_BBANDS_DAILY_HISTORICAL_ALPHA_ALL_STOCKS_FIXED_INDEX_V2.py"
+ "FIN_IND_BBANDS_DAILY_INCREMENTAL_FROM_DAILY_ALL_STOCKS_FAST_V2.py"
 
-    #"FIN_IND_AROON_DAILY_HISTORICAL_ALPHA_ALL_STOCKS_FIXED_INDEX.py"
-    "FIN_IND_AROON_DAILY_INCREMENTAL_FROM_DAILY_ALL_STOCKS_FAST.py"
 )
 
 # Function that keeps rerunning a script until it succeeds
