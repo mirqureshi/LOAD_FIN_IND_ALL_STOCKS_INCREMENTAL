@@ -10,32 +10,36 @@ set -u  # fail if an unset variable is used
 # export PGPORT="5432"
 # export PGSSLMODE="require"
 
-echo "Starting parallel execution of Python scripts..."
+echo "Starting SEQUENTIAL execution of Python scripts..."
 echo "========================================="
 
 scripts=(
- 
+
   "FIN_IND_daily_adjusted_PRODUCTION_INCREMENTAL.py"
   "FIN_IND_intraday_PRODUCTION_INCREMENTAL.py"
   "FIN_IND_income_statement_INCREMENTAL_ALL_STOCKS.py"
   "FIN_IND_news_sentiment_INCREMENTAL.py"
-  
-  #####"FIN_IND_ADX_WEEKLY_INCREMENTAL_FROM_DAILY_ALL_STOCKS.py"
-  #####"FIN_IND_ATR_WEEKLY_INCREMENTAL_FROM_DAILY_ALL_STOCKS_v2.py"
-  #####"FIN_IND_AROON_WEEKLY_INCREMENTAL_FROM_DAILY_ALL_STOCKS.py"
-  
+
   #"FIN_IND_ADX_DAILY_HISTORICAL_ALPHA_ALL_STOCKS_FIXED_INDEX_V2.py"
   "FIN_IND_ADX_DAILY_INCREMENTAL_FROM_DAILY_ALL_STOCKS_FAST.py"
 
   "FIN_IND_ATR_DAILY_INCREMENTAL_FROM_DAILY_ALL_STOCKS_FAST_NO_CREATE.py"
 
-   #"FIN_IND_AROON_WEEKLY_HISTORICAL_ALPHA_ALL_STOCKS.py"
+  #####"FIN_IND_ADX_WEEKLY_INCREMENTAL_FROM_DAILY_ALL_STOCKS.py"
+  #####"FIN_IND_ATR_WEEKLY_INCREMENTAL_FROM_DAILY_ALL_STOCKS_v2.py"
+  #####"FIN_IND_AROON_WEEKLY_INCREMENTAL_FROM_DAILY_ALL_STOCKS.py"
+
+  #"FIN_IND_AROON_WEEKLY_HISTORICAL_ALPHA_ALL_STOCKS.py"
 )
 
 # Function that keeps rerunning a script until it succeeds
 run_script() {
   script=$1
+
+  echo ""
+  echo "========================================="
   echo "Starting $script..."
+  echo "========================================="
 
   until python "$script"; do
     echo "❌ $script failed. Retrying in 5 seconds..."
@@ -45,13 +49,10 @@ run_script() {
   echo "✅ $script completed."
 }
 
-# Run all scripts in parallel
+# Run all scripts SEQUENTIALLY
 for script in "${scripts[@]}"; do
-  run_script "$script" &
+  run_script "$script"
 done
-
-# Wait for all background jobs to finish
-wait
 
 echo "========================================="
 echo "✅ All Python scripts completed successfully!"
