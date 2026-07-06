@@ -48,7 +48,7 @@ SOURCE_DATE_COLUMN = "price_date"
 SOURCE_PRICE_COLUMN = "close"
 
 TARGET_SCHEMA = "FIN_IND"
-TARGET_TABLE = "bbands_data_new"
+TARGET_TABLE = "bbands_data"
 
 INTERVAL = "daily"
 TIME_PERIOD = 14
