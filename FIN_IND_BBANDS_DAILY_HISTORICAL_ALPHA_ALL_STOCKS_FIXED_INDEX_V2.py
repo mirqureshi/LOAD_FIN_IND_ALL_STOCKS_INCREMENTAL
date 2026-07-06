@@ -44,7 +44,7 @@ STOCK_MASTER_SCHEMA = "FIN_IND"
 STOCK_MASTER_TABLE = "us_stock_master"
 
 TARGET_SCHEMA = "FIN_IND"
-TARGET_TABLE = "bbands_data_new"
+TARGET_TABLE = "bbands_data"
 
 # DAILY BBANDS
 INTERVAL = "daily"
