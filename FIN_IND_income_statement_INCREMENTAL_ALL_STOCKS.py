@@ -53,9 +53,9 @@ MAX_STOCK_SYMBOLS = 0
 
 # Current 75 API/min safe settings.
 # For 1200 API/min later, you can use INTERVAL_PER_API = 0.05 after testing.
-BATCH_SIZE = 200
+BATCH_SIZE = 300
 INTERVAL_PER_API = 0.05
-BATCH_INTERVAL = 1
+BATCH_INTERVAL = 0
 
 DB_CONNECT_TIMEOUT_SECONDS = 15
 API_TIMEOUT_SECONDS = 60
@@ -193,7 +193,7 @@ def fetch_all_stock_symbols_from_master(cursor):
     query = f"""
         SELECT DISTINCT UPPER(TRIM(ticker)) AS ticker
         FROM {schema}.{table}
-        WHERE {where_sql}
+        
         ORDER BY ticker
         {limit_sql};
     """
