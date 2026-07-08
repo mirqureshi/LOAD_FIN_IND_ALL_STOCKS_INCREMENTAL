@@ -101,9 +101,9 @@ START_AFTER_TICKER = ""
 MAX_STOCK_SYMBOLS = 0
 
 # Batch/rate settings
-BATCH_SIZE = 200
+BATCH_SIZE = 300
 INTERVAL_PER_API = 0.05
-BATCH_INTERVAL = 1
+BATCH_INTERVAL = 0
 
 # Timeouts
 DB_CONNECT_TIMEOUT_SECONDS = 15
@@ -287,7 +287,7 @@ def fetch_all_stock_symbols_from_master(cursor):
     query = f"""
         SELECT DISTINCT UPPER(TRIM(ticker)) AS ticker
         FROM {schema}.{table}
-        WHERE {where_sql}
+        
         
         ORDER BY ticker
         {limit_sql};
