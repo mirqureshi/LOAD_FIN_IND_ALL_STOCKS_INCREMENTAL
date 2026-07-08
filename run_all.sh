@@ -10,15 +10,27 @@ set -u  # fail if an unset variable is used
 # export PGPORT="5432"
 # export PGSSLMODE="require"
 
-echo "Starting SEQUENTIAL execution of Python scripts..."
+echo "Starting mixed execution of Python scripts..."
+echo "Group 1: parallel"
+echo "Group 2: sequential"
 echo "========================================="
 
-scripts=(
+# ============================================================
+# GROUP 1: Run these scripts in parallel
+# ============================================================
 
+parallel_scripts=(
   "FIN_IND_daily_adjusted_PRODUCTION_INCREMENTAL.py"
   "FIN_IND_intraday_PRODUCTION_INCREMENTAL.py"
   "FIN_IND_income_statement_INCREMENTAL_ALL_STOCKS.py"
   "FIN_IND_news_sentiment_INCREMENTAL.py"
+)
+
+# ============================================================
+# GROUP 2: Run these scripts sequentially after Group 1 finishes
+# ============================================================
+
+sequential_scripts=(
 
   ##"FIN_IND_ADX_DAILY_HISTORICAL_ALPHA_ALL_STOCKS_FIXED_INDEX_V2.py"
   "FIN_IND_ADX_DAILY_INCREMENTAL_FROM_DAILY_ALL_STOCKS_FAST.py"
@@ -33,10 +45,12 @@ scripts=(
 
   #"FIN_IND_EMA_DAILY_HISTORICAL_ALPHA_ALL_STOCKS_FIXED_INDEX.py"
   "FIN_IND_EMA_DAILY_INCREMENTAL_FROM_DAILY_ALL_STOCKS_FAST.py"
-
 )
 
+# ============================================================
 # Function that keeps rerunning a script until it succeeds
+# ============================================================
+
 run_script() {
   script=$1
 
@@ -53,8 +67,33 @@ run_script() {
   echo "✅ $script completed."
 }
 
-# Run all scripts SEQUENTIALLY
-for script in "${scripts[@]}"; do
+# ============================================================
+# Run Group 1 in parallel
+# ============================================================
+
+echo ""
+echo "========================================="
+echo "Starting Group 1 scripts in PARALLEL..."
+echo "========================================="
+
+for script in "${parallel_scripts[@]}"; do
+  run_script "$script" &
+done
+
+# Wait for all parallel scripts to finish before continuing
+wait
+
+echo ""
+echo "========================================="
+echo "✅ All Group 1 parallel scripts completed."
+echo "Now starting Group 2 sequential scripts..."
+echo "========================================="
+
+# ============================================================
+# Run Group 2 sequentially
+# ============================================================
+
+for script in "${sequential_scripts[@]}"; do
   run_script "$script"
 done
 
