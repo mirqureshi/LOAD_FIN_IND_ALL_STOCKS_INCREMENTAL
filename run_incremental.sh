@@ -15,8 +15,8 @@ echo "========================================="
 
 scripts=(
 
- #"FIN_IND_EMA_DAILY_HISTORICAL_ALPHA_ALL_STOCKS_FIXED_INDEX.py"
- #"FIN_IND_EMA_DAILY_INCREMENTAL_FROM_DAILY_ALL_STOCKS_FAST.py"
+ "FIN_IND_FORCE_DAILY_HISTORICAL_ALPHA_ALL_STOCKS_FIXED_INDEX.py"
+ "FIN_IND_FORCE_DAILY_INCREMENTAL_FROM_DAILY_ALL_STOCKS_FAST.py"
 )
 
 # Function that keeps rerunning a script until it succeeds
