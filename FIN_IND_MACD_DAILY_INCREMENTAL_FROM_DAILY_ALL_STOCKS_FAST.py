@@ -61,11 +61,11 @@ def get_symbols(cur):
     if START_AFTER_TICKER:
         where.append('TRIM(ticker)>%s'); params.append(START_AFTER_TICKER.strip())
     limit=f'LIMIT {int(MAX_STOCK_SYMBOLS)}' if MAX_STOCK_SYMBOLS and MAX_STOCK_SYMBOLS>0 else ''
-    cur.execute(f"SELECT DISTINCT TRIM(ticker) AS ticker FROM {s}.{t} WHERE {' AND '.join(where)} ORDER BY TRIM(ticker) {limit};",params)
+    cur.execute(f"SELECT DISTINCT TRIM(ticker) AS ticker FROM {s}.{t}  ORDER BY TRIM(ticker) {limit};",params)
     return [r[0] for r in cur.fetchall() if r[0]]
 def max_date(cur):
     s=safe_identifier(TARGET_SCHEMA); t=safe_identifier(TARGET_TABLE)
-    cur.execute(f"SELECT MAX(date) FROM {s}.{t} WHERE interval=%s AND fast_period=%s AND slow_period=%s AND signal_period=%s AND series_type=%s;",(INTERVAL,FAST_PERIOD,SLOW_PERIOD,SIGNAL_PERIOD,SERIES_TYPE))
+    cur.execute(f"SELECT MAX(date) FROM {s}.{t} ;",(INTERVAL,FAST_PERIOD,SLOW_PERIOD,SIGNAL_PERIOD,SERIES_TYPE))
     m=cur.fetchone()[0]
     if m is None: raise SystemExit('No existing MACD data found. Run historical load first.')
     return m
