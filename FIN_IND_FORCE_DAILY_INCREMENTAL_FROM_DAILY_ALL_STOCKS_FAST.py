@@ -168,9 +168,7 @@ def fetch_max_force_date(cursor):
     query = f"""
         SELECT MAX(date)
         FROM {schema}.{table}
-        WHERE interval = %s
-          AND time_period = %s
-          AND series_type = %s;
+       ;
     """
     cursor.execute(query, (INTERVAL, TIME_PERIOD, SERIES_TYPE))
     row = cursor.fetchone()
@@ -197,7 +195,7 @@ def fetch_all_stock_symbols_from_master(cursor):
     query = f"""
         SELECT DISTINCT UPPER(TRIM(ticker)) AS ticker
         FROM {schema}.{table}
-        WHERE {' AND '.join(where_conditions)}
+       
         ORDER BY ticker
         {limit_sql};
     """
